@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гастрономический скаут</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключаем Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Заголовок -->
+                <div class="text-center mb-4">
+                    <h1 class="display-5 text-primary">🍽️ Гастрономический скаут</h1>
+                    <p class="lead">Найди идеальное место по настроению</p>
+                </div>
+
+                <!-- Форма поиска -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <form id="searchForm">
+                            <div class="mb-3">
+                                <label for="moodInput" class="form-label">Опишите ваше настроение:</label>
+                                <input type="text" class="form-control" id="moodInput" 
+                                       placeholder="например: романтика, быстро, компания друзей...">
+                                <div class="form-text">Попробуйте: романтика, быстро, семья, работа, экзотика</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" id="searchBtn">
+                                Найти рестораны
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Быстрые подсказки -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h6 class="card-title">Популярные запросы:</h6>
+                        <div class="d-flex flex-wrap gap-2" id="quickSuggestions">
+                            {% for mood, keywords in mood_categories.items() %}
+                            <button class="btn btn-outline-primary btn-sm quick-mood" 
+                                    data-mood="{{ mood }}">
+                                {{ mood }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Результаты -->
+                <div id="resultsSection" style="display: none;">
+                    <h5 class="mb-3">Найдены рестораны <span id="resultsCount" class="badge bg-primary"></span></h5>
+                    <div id="resultsContainer" class="restaurants-list"></div>
+                </div>
+
+                <!-- Сообщение об ошибке -->
+                <div id="errorAlert" class="alert alert-danger" style="display: none;"></div>
+            </div>
+
+            <!-- Карта -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Карта ресторанов</h5>
+                        <div id="map"></div>
+                        <div class="mt-2 text-muted small">
+                            <i>Карта покажет выбранные рестораны</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
