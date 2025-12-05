@@ -19,3 +19,5 @@ Web application for finding restaurants by mood in Moscow.
 pip install -r requirements.txt
 python init_db.py
 python app.py
+
+Open http://localhost:5000
