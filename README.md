@@ -1,2 +1,21 @@
-# gastronomic-scout
-Веб-приложение для поиска ресторанов по настроению в Москве. На Flask, JavaScript с интерактивной картой.
+# Gastronomic Scout
+
+Web application for finding restaurants by mood in Moscow.
+
+## Features
+- Search restaurants by mood keywords
+- Interactive map with Leaflet.js
+- Quick mood suggestions
+- Responsive design
+
+## Technologies
+- Python, Flask
+- HTML, CSS, JavaScript
+- SQLite3
+- Leaflet.js
+
+## Quick Start
+```bash
+pip install -r requirements.txt
+python init_db.py
+python app.py
